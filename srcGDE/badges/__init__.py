@@ -20,8 +20,11 @@ def add_user(username):
     db.session.commit()
     return
 
-def find_user(username):
+def find_user_force(username):
     user = User.query.filter_by(nickname=username).first()
+    if user is None:
+        add_user(username)
+        user = User.query.filter_by(nickname=username).first()
     return user
 
 def find_badge(name):
@@ -105,10 +108,10 @@ def show_all_badges():
 
 @badges.route('/award', methods=["POST"])
 def create_badge_user_mapping():
-    user = find_user(request.form['username'])
-    badge = find_badge(request.form['badge'])
-    existing = UserBadge.query.filter_by(user_id=user.id, badge_id=badge.id).all()
     try:
+        user = find_user_force(request.form['username'])
+        badge = find_badge(request.form['badge'])
+        existing = UserBadge.query.filter_by(user_id=user.id, badge_id=badge.id).all()
         if len(existing) > 0:
             return jsonify({
                 'success': False,

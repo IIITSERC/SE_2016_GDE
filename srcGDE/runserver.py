@@ -11,6 +11,10 @@ app = Flask(__name__)
 from badges import badges
 app.register_blueprint(badges, url_prefix='/badges')
 
+# Leaderboard registering
+from leaderboard import leaderboard
+app.register_blueprint(leaderboard, url_prefix='/leaderboard')
+
 # @app.route('/documentation')
 # def documentation():
 #     return auto.html()
