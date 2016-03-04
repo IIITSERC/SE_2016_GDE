@@ -35,3 +35,16 @@ Namespace of the APIs registered is /leaderboard
 | /instance/{{name}} | GET | List all the scores of a particular leaderboard along with it's description |
 | /give | POST | Award score to user. 'username, instance, amount' payload is needed. (name of instance and not id) |
 | /take | POST | Take score from user. 'username, instance, amount' payload is needed. (name of instance and not id) |
+
+---------
+
+### File structure
+
+srcGDE <-- contains all the code needed to implement the GDE
+srcGDE/runserver.py <-- 'python runserver.py' will run the source code
+srcGDE/db_*.py <-- utility file, automatically create and migrate database based on model. Run it for one GDE at a time
+srcGDE/badges/models.py <-- models needed for badges GDE
+srcGDE/badges/config.py <-- database config for badges GDE
+srcGDE/badges/__init__.py <-- main code for badges GDE, routes, and controller is combined
+srcGDE/leaderboard/* <-- same as explained for badges
+
