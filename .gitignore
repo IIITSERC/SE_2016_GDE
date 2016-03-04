@@ -62,3 +62,5 @@ target/
 .ipynb_checkpoints
 flaskapp/
 .idea/
+*.db
+srcGDE/*/migrations/
