@@ -40,11 +40,11 @@ Namespace of the APIs registered is /leaderboard
 
 ### File structure
 
-srcGDE <-- contains all the code needed to implement the GDE
-srcGDE/runserver.py <-- 'python runserver.py' will run the source code
-srcGDE/db_*.py <-- utility file, automatically create and migrate database based on model. Run it for one GDE at a time
-srcGDE/badges/models.py <-- models needed for badges GDE
-srcGDE/badges/config.py <-- database config for badges GDE
-srcGDE/badges/__init__.py <-- main code for badges GDE, routes, and controller is combined
-srcGDE/leaderboard/* <-- same as explained for badges
+srcGDE <-- contains all the code needed to implement the GDE<br>
+srcGDE/runserver.py <-- 'python runserver.py' will run the source code<br>
+srcGDE/db_*.py <-- utility file, automatically create and migrate database based on model. Run it for one GDE at a time<br>
+srcGDE/badges/models.py <-- models needed for badges GDE<br>
+srcGDE/badges/config.py <-- database config for badges GDE<br>
+srcGDE/badges/__init__.py <-- main code for badges GDE, routes, and controller is combined<br>
+srcGDE/leaderboard/* <-- same as explained for badges<br>
 
