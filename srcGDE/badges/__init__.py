@@ -43,7 +43,7 @@ def delete_all_users(username):
 def module_name(page):
     return 'Badges module'
 
-@badges.route('/users')
+@badges.route('/users', methods=["GET"])
 def show_all_users():
     users = User.query.all()
     data = []
@@ -58,7 +58,7 @@ def show_all_users():
         'data': data
     })
 
-@badges.route('/user/<page>')
+@badges.route('/user/<page>', methods=["GET"])
 def show_user(page):
     user = User.query.filter_by(nickname=page).first()
     badge_ids = UserBadge.query.filter_by(user_id=user.id)
@@ -93,7 +93,7 @@ def create_badge():
         'message': 'Badge added successfully'
     })
 
-@badges.route('/list')
+@badges.route('/list', methods=["GET"])
 def show_all_badges():
     badges = Badge.query.all()
     data = []
@@ -130,6 +130,6 @@ def create_badge_user_mapping():
         'message': 'Badge awarded successfully'
     })
 
-@badges.route('/static/<page>')
+@badges.route('/static/<page>', methods=["GET"])
 def send_static(page):
     return send_from_directory('badges/static', page)

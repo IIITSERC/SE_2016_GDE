@@ -6,4 +6,9 @@ The steps to run the Game design elements shared in this repo is as follows.
 4. Install following packages using 'pip install <package_name>'
     - flask
     - flask-sqlalchemy
-    
+    - flask-autodoc (not used)
+    - flask-jsonpify
+    - sqlalchemy-migrate
+    - flask-blueprint
+5. Go to srcGDE folder.
+6. Run using 'python runserver.py'

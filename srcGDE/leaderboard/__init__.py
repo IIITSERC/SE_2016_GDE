@@ -47,7 +47,7 @@ def delete_all_users(username):
 def module_name(page):
     return 'Leader board module'
 
-@leaderboard.route('/users')
+@leaderboard.route('/users', methods=["GET"])
 def show_all_users():
     users = User.query.all()
     data = []
@@ -62,7 +62,7 @@ def show_all_users():
         'data': data
     })
 
-@leaderboard.route('/user/<page>')
+@leaderboard.route('/user/<page>', methods=["GET"])
 def show_user(page):
     user = User.query.filter_by(nickname=page).first()
     scores = UserScore.query.filter_by(user_id=user.id)
@@ -84,7 +84,7 @@ def show_user(page):
     })
 
 @leaderboard.route('/instance/<page>')
-def show_leaderboard(page):
+def show_leaderboard(page, methods=["GET"]):
     instance = Instance.query.filter_by(name=page).first()
     scores = UserScore.query.filter_by(instance_id=instance.id)
     users = []
@@ -121,7 +121,7 @@ def create_instance():
         'message': 'New instance created successfully'
     })
 
-@leaderboard.route('/list')
+@leaderboard.route('/list', methods=["GET"])
 def show_all_leaderboard():
     leaderboard = Instance.query.all()
     data = []
