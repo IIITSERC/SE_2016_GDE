@@ -1,0 +1,178 @@
+<head>
+    <title>Table</title>
+    <script src="gamily/essentials/jquery.js"></script>
+    <link href="gamily/essentials/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="gamily/essentials/normalize.css" rel="stylesheet" type="text/css" />
+    <script src="gamily/essentials/bootstrap.min.js"></script>
+
+    <!--- scripts -->
+
+    <!--- essential gamily files -->
+    <script src="gamily/essentials/handlebars.js"></script>
+    <script src="gamily/essentials/ember.prod.js"></script>
+
+    <script src="gamily/essentials/jquery-ui.js"></script>
+    <script src="gamily/essentials/jquery.mousewheel.js"></script>
+    <script src="gamily/essentials/antiscroll.js"></script>
+    <link rel="stylesheet" href="gamily/essentials/antiscroll.css">
+    <!--- end of essential gamily files -->
+
+    <!--- gamily components (as per need) -->
+    <script scr="gamily/components/tables/resize_handler.js"></script>
+    <script scr="gamily/components/tables/style_bindings.js"></script>
+    <!--<script src="http://rawgit.com/Addepar/ember-table/v0.2.0/dependencies/ember-addepar-mixins/resize_handler.js"></script>-->
+    <!--<script src="http://rawgit.com/Addepar/ember-table/v0.2.0/dependencies/ember-addepar-mixins/style_bindings.js"></script>-->
+    <script src="http://rawgit.com/Addepar/ember-table/v0.4.0/dist/ember-table.js"></script>
+    <link rel="stylesheet" href="gamily/components/tables/ember-table.css">
+    <!--- gamily components (as per need) -->
+
+    <!--- initialize -->
+    <script src="app.js"></script>
+    <script src="gamily/components/gamily-table/gamily-table.js"></script>
+    <script src="gamily/components/gamily-matrix/gamily-matrix.js"></script>
+    <style>
+        html, body {
+            margin: 20px;
+        }
+        .documentation th, .documentation td {
+            padding: 3px;
+            border: 1px solid;
+        }
+        .documentation {
+            margin-bottom: 20px;
+        }
+        .table-container {
+            /*max-width: 500px;*/
+            width: 400px;
+            margin-bottom: 15px;
+            /*height: 200px;*/
+        }
+
+        .table-container2 {
+            max-width: 300px;
+            height: 200px;
+        }
+        #playground h4 {
+            margin-top: 0;
+            line-height: 5px;
+        }
+        #playground h2 {
+            margin-bottom: 5px;
+        }
+        #playground pre {
+            background: grey;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="playground">
+        <script type="text/x-handlebars" data-template-name="application">
+            <h1>Gamily Matrix</h1>
+            <hr>
+            <h2>Demo</h2>
+            <div class="preview">
+                    <div class="table-container">
+                        {{gamily-matrix ajaxURL="http://127.0.0.1:5000/badges/user/test" variable="data.badges" imgPath="http://127.0.0.1:5000/badges/static/"}}
+                    </div>
+            </div>
+            <hr>
+            <h2>Parameters</h2>
+            <table class="documentation">
+                <tr>
+                    <th style="width:150px;text-align:left">Variable</th>
+                    <th style="width:400px;text-align:left">Meaning</th>
+                </tr>
+                <tr>
+                    <td>ajaxURL</td>
+                    <td>URL from which data need to be fetched</td>
+                </tr>
+                <tr>
+                    <td>getData</td>
+                    <td>GET parameters as JSON</td>
+                </tr>
+                <tr>
+                    <td>variable</td>
+                    <td>Variable name in response to render (blank to complete) - expect list</td>
+                </tr>
+                <tr>
+                    <td>numColumns</td>
+                    <td>columns of matrix. 2 (default)</td>
+                </tr>
+
+            </table>
+            <hr>
+            <h2>Usage</h2>
+            <pre><code>\{{gamily-table ajaxURL="<url>" variable="path.to.data" getData='get params as JSON'}}</code></pre>
+            <hr>
+            <h2>Description</h2>
+            <ul>
+            <li><b>ajaxURL</b> : The API endpoint on which you wish to make GET request. Make sure it is complete path with http:// or https://.</li>
+            <li><b>Variable</b> : The variable name in backend's response. An example API response is shared below, we wish to display the badges, so it will be written as <b>data.badges</b>.<br><pre><code>{
+  "data": {
+    "badges": [
+      {
+        "description": "Awarded when user has reviewed x commits",
+        "id": 1,
+        "image_name": "guru.png",
+        "name": "Guru"
+      },
+      {
+        "description": "First accepted pull request",
+        "id": 2,
+        "image_name": "begineer.png",
+        "name": "Begineer"
+      },
+      {
+        "description": "Profile Image uploaded",
+        "id": 3,
+        "image_name": "stylist.png",
+        "name": "Stylist"
+      }
+    ],
+    "id": 3,
+    "name": "test"
+  },
+  "message": "User exist",
+  "success": true
+}</code></pre></li>
+            <li><b>getData</b> : If the ajaxURL expects some GET parameters, you can send it initializing getData with json of the GET parameters. The request would be sent accordingly.</li>
+            <li><b>numColumns</b> : numColumns defines the number of columns you wish to be in your matrix. The rows count is automatically calculated depending on the number of elements, and rendered accordingly.</li>
+            </ul>
+            More settings can be customized as per the requirement by editing gamily-matrix.js. The exact locations for making changes would be <code>getCellContent</code> and <code>tableCellViewClass</code> functions. Snippet of them is shared below.
+            <pre><code>getCellContent: function(row) {
+    var rowContent = row.get('content');
+    var myCell = rowContent[this.get('myNumber')];
+    if('image_name' in myCell) {
+        return {
+            'imgLink': parent.get('imgPath') + myCell['image_name'],
+            'style': 'width:24px;height:24px;',
+            'exist': true
+        }
+    }
+    else {
+        return {
+            'exist': false
+        }
+    }
+},
+tableCellViewClass: Ember.Table.TableCell.extend({
+    template: Em.Handlebars.compile('' +
+    '{{#if "view.cellContent.exist"}}' +
+    '   <img  {{bind-attr src="view.cellContent.imgLink"}} style="{{view.cellContent.style}}">' +
+    '{{/if}}' +
+    '')
+})</code></pre>
+            In the above snippet,
+            <ul>
+                <li>all the data from API is available in myCell variable (for doing if/else according to need).</li>
+                <li>Custom css (example for opacity, background-color, etc) can be changed by editing "style" variable.</li>
+                <li>The myNumber tells current column number. (0th index).</li>
+                <li>Different column can have different view, you can add myNumber in if/else inside tableCellViewClass function.</li>
+                <li>More reference on handlerbars used in template function can be found <a href="http://handlebarsjs.com/reference.html">here</a></li>
+            </ul>
+            <hr>
+        </script>
+    </div>
+</body>

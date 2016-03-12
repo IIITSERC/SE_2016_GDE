@@ -1,0 +1,143 @@
+<head>
+    <title>Sample application related to Software Engineering</title>
+    <script src="gamily/essentials/jquery.js"></script>
+    <link href="gamily/essentials/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="gamily/essentials/normalize.css" rel="stylesheet" type="text/css" />
+    <script src="gamily/essentials/bootstrap.min.js"></script>
+
+    <!--- scripts -->
+
+    <!--- essential gamily files -->
+    <script src="gamily/essentials/handlebars.js"></script>
+    <script src="gamily/essentials/ember.prod.js"></script>
+
+    <script src="gamily/essentials/jquery-ui.js"></script>
+    <script src="gamily/essentials/jquery.mousewheel.js"></script>
+    <script src="gamily/essentials/antiscroll.js"></script>
+    <link rel="stylesheet" href="gamily/essentials/antiscroll.css">
+    <!--- end of essential gamily files -->
+
+    <!--- gamily components (as per need) -->
+    <script scr="gamily/components/tables/resize_handler.js"></script>
+    <script scr="gamily/components/tables/style_bindings.js"></script>
+    <!--<script src="http://rawgit.com/Addepar/ember-table/v0.2.0/dependencies/ember-addepar-mixins/resize_handler.js"></script>-->
+    <!--<script src="http://rawgit.com/Addepar/ember-table/v0.2.0/dependencies/ember-addepar-mixins/style_bindings.js"></script>-->
+    <script src="http://rawgit.com/Addepar/ember-table/v0.4.0/dist/ember-table.js"></script>
+    <link rel="stylesheet" href="gamily/components/tables/ember-table.css">
+    <!--- gamily components (as per need) -->
+
+    <!--- initialize -->
+    <script src="app.js"></script>
+    <script src="gamily/components/gamily-table/gamily-table.js"></script>
+    <script src="gamily/components/gamily-matrix/gamily-matrix.js"></script>
+    <script src="gamily/components/gamily-matrix/gamily-custom.js"></script>
+    <style>
+        html, body {
+            margin: 20px;
+        }
+        .documentation th, .documentation td {
+            padding: 3px;
+            border: 1px solid;
+        }
+        .documentation {
+            margin-bottom: 20px;
+        }
+        .table-container {
+            /*max-width: 500px;*/
+            width: 400px;
+            margin-bottom: 15px;
+            /*height: 200px;*/
+        }
+
+        .table-container2 {
+            max-width: 300px;
+            height: 200px;
+        }
+        #playground h4 {
+            margin-top: 0;
+            line-height: 5px;
+        }
+        #playground h2 {
+            margin-bottom: 5px;
+        }
+        #playground pre {
+            background: grey;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="playground">
+        <script type="text/x-handlebars" data-template-name="application">
+            <h1>Demonstration GDE Frontend</h1>
+            <hr>
+            <h2>Table Anything</h2>
+            <h4>(leader board shown as example)</h4>
+            Converts any list of dictionaries into tabular form.
+            <div class="preview">
+                    <div class="table-container">
+                        {{gamily-table ajaxURL="http://127.0.0.1:5000/leaderboard/instance/comments" variable="data.scores" getData='{"user":"example", "pass":"something"}'}}
+                    </div>
+            </div>
+            <table class="documentation">
+                <tr>
+                    <th style="width:150px;text-align:left">Variable</th>
+                    <th style="width:400px;text-align:left">Meaning</th>
+                </tr>
+                <tr>
+                    <td>ajaxURL</td>
+                    <td>URL from which data need to be fetched</td>
+                </tr>
+                <tr>
+                    <td>getData</td>
+                    <td>GET parameters as JSON</td>
+                </tr>
+                <tr>
+                    <td>variable</td>
+                    <td>Variable name in response to render (blank to complete) - expects array of dict</td>
+                </tr>
+
+            </table>
+            <h4>Usage</h4>
+            <pre><code>\{{gamily-table ajaxURL="<url>" variable="path.to.data" getData='get params as JSON'}}</code></pre>
+            <a href="table.html">Descriptive documentation</a>
+            <hr>
+            <h2>Matrixify</h2>
+            <h4>(badges shown as example)</h4>
+            Converts any list of dictionaries into matrix form.
+            <div class="preview">
+                    <div class="table-container">
+                        {{gamily-matrix ajaxURL="http://127.0.0.1:5000/badges/user/test" variable="data.badges" imgPath="http://127.0.0.1:5000/badges/static/"}}
+                    </div>
+            </div>
+            <table class="documentation">
+                <tr>
+                    <th style="width:150px;text-align:left">Variable</th>
+                    <th style="width:400px;text-align:left">Meaning</th>
+                </tr>
+                <tr>
+                    <td>ajaxURL</td>
+                    <td>URL from which data need to be fetched</td>
+                </tr>
+                <tr>
+                    <td>getData</td>
+                    <td>GET parameters as JSON</td>
+                </tr>
+                <tr>
+                    <td>variable</td>
+                    <td>Variable name in response to render (blank to complete) - expect list</td>
+                </tr>
+                <tr>
+                    <td>numColumns</td>
+                    <td>columns of matrix. 2 (default)</td>
+                </tr>
+            </table>
+                More configuration parameters aren't exposed but can be changed tweaking srcApplication/gamily/components/gamily-matrix/gamily-matrix.js<br>Example: css based on some value, etc.<br><br>
+            <h4>Usage</h4>
+            <pre><code>\{{gamily-matrix ajaxURL="<url>" variable="path.to.data" getData='get params as JSON'}}</code></pre>
+            <a href="matrix.html">Descriptive documentation</a>
+            <hr>
+        </script>
+    </div>
+</body>

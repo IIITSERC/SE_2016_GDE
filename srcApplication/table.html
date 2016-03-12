@@ -1,0 +1,134 @@
+<head>
+    <title>Table</title>
+    <script src="gamily/essentials/jquery.js"></script>
+    <link href="gamily/essentials/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="gamily/essentials/normalize.css" rel="stylesheet" type="text/css" />
+    <script src="gamily/essentials/bootstrap.min.js"></script>
+
+    <!--- scripts -->
+
+    <!--- essential gamily files -->
+    <script src="gamily/essentials/handlebars.js"></script>
+    <script src="gamily/essentials/ember.prod.js"></script>
+
+    <script src="gamily/essentials/jquery-ui.js"></script>
+    <script src="gamily/essentials/jquery.mousewheel.js"></script>
+    <script src="gamily/essentials/antiscroll.js"></script>
+    <link rel="stylesheet" href="gamily/essentials/antiscroll.css">
+    <!--- end of essential gamily files -->
+
+    <!--- gamily components (as per need) -->
+    <script scr="gamily/components/tables/resize_handler.js"></script>
+    <script scr="gamily/components/tables/style_bindings.js"></script>
+    <!--<script src="http://rawgit.com/Addepar/ember-table/v0.2.0/dependencies/ember-addepar-mixins/resize_handler.js"></script>-->
+    <!--<script src="http://rawgit.com/Addepar/ember-table/v0.2.0/dependencies/ember-addepar-mixins/style_bindings.js"></script>-->
+    <script src="http://rawgit.com/Addepar/ember-table/v0.4.0/dist/ember-table.js"></script>
+    <link rel="stylesheet" href="gamily/components/tables/ember-table.css">
+    <!--- gamily components (as per need) -->
+
+    <!--- initialize -->
+    <script src="app.js"></script>
+    <script src="gamily/components/gamily-table/gamily-table.js"></script>
+    <script src="gamily/components/gamily-matrix/gamily-matrix.js"></script>
+    <style>
+        html, body {
+            margin: 20px;
+        }
+        .documentation th, .documentation td {
+            padding: 3px;
+            border: 1px solid;
+        }
+        .documentation {
+            margin-bottom: 20px;
+        }
+        .table-container {
+            /*max-width: 500px;*/
+            width: 400px;
+            margin-bottom: 15px;
+            /*height: 200px;*/
+        }
+
+        .table-container2 {
+            max-width: 300px;
+            height: 200px;
+        }
+        #playground h4 {
+            margin-top: 0;
+            line-height: 5px;
+        }
+        #playground h2 {
+            margin-bottom: 5px;
+        }
+        #playground pre {
+            background: grey;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="playground">
+        <script type="text/x-handlebars" data-template-name="application">
+            <h1>Gamily Table</h1>
+            <hr>
+            <h2>Demo</h2>
+            <div class="preview">
+                    <div class="table-container">
+                        {{gamily-table ajaxURL="http://127.0.0.1:5000/leaderboard/instance/comments" variable="data.scores" getData='{"user":"example", "pass":"something"}'}}
+                    </div>
+            </div>
+            <hr>
+            <h2>Parameters</h2>
+            <table class="documentation">
+                <tr>
+                    <th style="width:150px;text-align:left">Variable</th>
+                    <th style="width:400px;text-align:left">Meaning</th>
+                </tr>
+                <tr>
+                    <td>ajaxURL</td>
+                    <td>URL from which data need to be fetched</td>
+                </tr>
+                <tr>
+                    <td>getData</td>
+                    <td>GET parameters as JSON</td>
+                </tr>
+                <tr>
+                    <td>variable</td>
+                    <td>Variable name in response to render (blank to complete) - expects array of dict</td>
+                </tr>
+
+            </table>
+            <hr>
+            <h2>Usage</h2>
+            <pre><code>\{{gamily-table ajaxURL="<url>" variable="path.to.data" getData='get params as JSON'}}</code></pre>
+            <hr>
+            <h2>Description</h2>
+            <ul>
+            <li><b>ajaxURL</b> : The API endpoint on which you wish to make GET request. Make sure it is complete path with http:// or https://.</li>
+            <li><b>Variable</b> : The variable name in your backend's JSON response. An example API response is shared below, we wish to display the scores, so it will be written as <b>data.scores</b>.<br><pre><code>{
+  "data": {
+    "description": "Leaderboard containing users with number of code review comments",
+    "id": 2,
+    "name": "comments",
+    "scores": [
+      {
+        "id": 1,
+        "name": "admin",
+        "score": 9
+      },
+      {
+        "id": 2,
+        "name": "testt",
+        "score": 10
+      }
+    ]
+  },
+  "message": "Instanct exist",
+  "success": true
+}</code></pre></li>
+            <li><b>getData</b> : If the ajaxURL expects some GET parameters, you can send it initializing getData with json of the GET parameters. The request would be sent accordingly.</li>
+            </ul>
+            <hr>
+        </script>
+    </div>
+</body>
