@@ -1,0 +1,126 @@
+<head>
+    <title>Table</title>
+    <script src="gamily/essentials/jquery.js"></script>
+    <link href="gamily/essentials/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="gamily/essentials/normalize.css" rel="stylesheet" type="text/css" />
+    <script src="gamily/essentials/bootstrap.min.js"></script>
+
+    <!--- scripts -->
+
+    <!--- essential gamily files -->
+    <script src="gamily/essentials/handlebars.js"></script>
+    <script src="gamily/essentials/ember.prod.js"></script>
+
+    <script src="gamily/essentials/jquery-ui.js"></script>
+    <script src="gamily/essentials/jquery.mousewheel.js"></script>
+    <script src="gamily/essentials/antiscroll.js"></script>
+    <link rel="stylesheet" href="gamily/essentials/antiscroll.css">
+    <!--- end of essential gamily files -->
+
+    <!--- gamily components (as per need) -->
+    <script scr="gamily/components/tables/resize_handler.js"></script>
+    <script scr="gamily/components/tables/style_bindings.js"></script>
+    <!--<script src="http://rawgit.com/Addepar/ember-table/v0.2.0/dependencies/ember-addepar-mixins/resize_handler.js"></script>-->
+    <!--<script src="http://rawgit.com/Addepar/ember-table/v0.2.0/dependencies/ember-addepar-mixins/style_bindings.js"></script>-->
+    <script src="http://rawgit.com/Addepar/ember-table/v0.4.0/dist/ember-table.js"></script>
+    <link rel="stylesheet" href="gamily/components/tables/ember-table.css">
+    <!--- gamily components (as per need) -->
+
+    <!--- initialize -->
+    <script src="app.js"></script>
+    <script src="gamily/components/gamily-list/gamily-list.js"></script>
+    <style>
+        html, body {
+            margin: 20px;
+        }
+        .documentation th, .documentation td {
+            padding: 3px;
+            border: 1px solid;
+        }
+        .documentation {
+            margin-bottom: 20px;
+        }
+        .table-container {
+            /*max-width: 500px;*/
+            width: 400px;
+            margin-bottom: 15px;
+            /*height: 200px;*/
+        }
+
+        .table-container2 {
+            max-width: 300px;
+            height: 200px;
+        }
+        #playground h4 {
+            margin-top: 0;
+            line-height: 5px;
+        }
+        #playground h2 {
+            margin-bottom: 5px;
+        }
+        #playground pre {
+            background: grey;
+            color: white;
+            padding: 10px;
+        }
+        #playground .list-group-item {
+            position: relative;
+            display: block;
+            padding: .75rem 1.25rem;
+            margin-bottom: -1px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="playground">
+        <script type="text/x-handlebars" data-template-name="application">
+            <h1>Gamily Listify</h1>
+            <hr>
+            <h2>Demo</h2>
+            <div class="preview">
+                    <div class="table-container">
+                        {{gamily-list ajaxURL="http://127.0.0.1:800/list.json.php" variable="data.list"}}
+                    </div>
+            </div>
+            <hr>
+            <h2>Parameters</h2>
+            <table class="documentation">
+                <tr>
+                    <th style="width:150px;text-align:left">Variable</th>
+                    <th style="width:400px;text-align:left">Meaning</th>
+                </tr>
+                <tr>
+                    <td>ajaxURL</td>
+                    <td>URL from which data need to be fetched</td>
+                </tr>
+                <tr>
+                    <td>getData</td>
+                    <td>GET parameters as JSON</td>
+                </tr>
+                <tr>
+                    <td>variable</td>
+                    <td>Variable name in response to render (blank to complete) - expect list</td>
+                </tr>
+
+            </table>
+            <hr>
+            <h2>Usage</h2>
+            <pre><code>\{{gamily-list ajaxURL="<url>" variable="path.to.data" getData='get params as JSON'}}</code></pre>
+            <hr>
+            <h2>Description</h2>
+            <ul>
+            <li><b>ajaxURL</b> : The API endpoint on which you wish to make GET request. Make sure it is complete path with http:// or https://.</li>
+            <li><b>Variable</b> : The variable name in backend's response. An example API response is shared below, we wish to display the list, so it will be written as <b>data.list</b>.<br><pre><code>{
+	"data": {
+		"list": ["Notification 1 content example", "User xyz has liked your status", "User abc has commented on the code diff #123"]
+	}
+}</code></pre></li>
+            <li><b>getData</b> : If the ajaxURL expects some GET parameters, you can send it initializing getData with json of the GET parameters. The request would be sent accordingly.</li>
+            </ul>
+            More settings can be customized as per the requirement by editing gamily-list.js. The exact locations for making changes would be Ember.TEMPLATES['components/gamily-list'] variable defined at top. This is normal handlerbars and can be changed according to need.
+            <hr>
+        </script>
+    </div>
+</body>
