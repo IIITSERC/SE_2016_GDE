@@ -12,3 +12,13 @@ The steps to run the Game design elements shared in this repo is as follows.
     - flask-blueprint
 5. Go to srcGDE folder.
 6. Run using 'python runserver.py'
+
+-----------------------
+
+- To run the srcApplication folder. Run the folder directly with any server which can serve html file.
+- Change the backend urls inside file according to your use.
+
+Example:
+
+1. sudo php -S 0.0.0.0:800
+2. sudo python -m SimpleHTTPServer
