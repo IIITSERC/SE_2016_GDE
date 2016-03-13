@@ -30,7 +30,7 @@
     <script src="app.js"></script>
     <script src="gamily/components/gamily-table/gamily-table.js"></script>
     <script src="gamily/components/gamily-matrix/gamily-matrix.js"></script>
-    <script src="gamily/components/gamily-matrix/gamily-custom.js"></script>
+    <script src="gamily/components/gamily-list/gamily-list.js"></script>
     <style>
         html, body {
             margin: 20px;
@@ -64,6 +64,14 @@
             background: grey;
             color: white;
             padding: 10px;
+        }
+        #playground .list-group-item {
+            position: relative;
+            display: block;
+            padding: .75rem 1.25rem;
+            margin-bottom: -1px;
+            background-color: #fff;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
@@ -137,6 +145,37 @@
             <h4>Usage</h4>
             <pre><code>\{{gamily-matrix ajaxURL="<url>" variable="path.to.data" getData='get params as JSON'}}</code></pre>
             <a href="matrix.html">Descriptive documentation</a>
+            <hr>
+            <h2>Listify</h2>
+            <h4>(shown as example)</h4>
+            Converts JSON list into list display.
+            <div class="preview">
+                    <div class="table-container">
+                        {{gamily-list ajaxURL="http://127.0.0.1:800/list.json.php" variable="data.list"}}
+                    </div>
+            </div>
+            <table class="documentation">
+                <tr>
+                    <th style="width:150px;text-align:left">Variable</th>
+                    <th style="width:400px;text-align:left">Meaning</th>
+                </tr>
+                <tr>
+                    <td>ajaxURL</td>
+                    <td>URL from which data need to be fetched</td>
+                </tr>
+                <tr>
+                    <td>getData</td>
+                    <td>GET parameters as JSON</td>
+                </tr>
+                <tr>
+                    <td>variable</td>
+                    <td>Variable name in response to render (blank to complete) - expect list</td>
+                </tr>
+            </table>
+                More configuration parameters aren't exposed but can be changed tweaking srcApplication/gamily/components/gamily-list/gamily-list.js<br>Example: css/structure, etc.<br><br>
+            <h4>Usage</h4>
+            <pre><code>\{{gamily-list ajaxURL="<url>" variable="path.to.data" getData='get params as JSON'}}</code></pre>
+            <a href="list.html">Descriptive documentation</a>
             <hr>
         </script>
     </div>
