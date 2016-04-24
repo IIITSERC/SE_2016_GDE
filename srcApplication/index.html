@@ -84,8 +84,8 @@
             <h4>(leader board shown as example)</h4>
             Converts any list of dictionaries into tabular form.
             <div class="preview">
-                    <div class="table-container">
-                        {{gamily-table ajaxURL="http://127.0.0.1:5000/leaderboard/instance/comments" variable="data.scores" getData='{"user":"example", "pass":"something"}'}}
+                    <div class="matrix-container">
+                        {{gamily-matrix ajaxURL="http://127.0.0.1:5000/level/instance/comments" variable="data.scores" getData='{"user":"example", "pass":"something"}'}}
                     </div>
             </div>
             <table class="documentation">
@@ -116,7 +116,7 @@
             Converts any list of dictionaries into matrix form.
             <div class="preview">
                     <div class="table-container">
-                        {{gamily-matrix ajaxURL="http://127.0.0.1:5000/badges/user/test" variable="data.badges" imgPath="http://127.0.0.1:5000/badges/static/"}}
+                        {{gamily-matrix ajaxURL="http://127.0.0.1:5000/level/user/test" variable="data.level" imgPath="http://127.0.0.1:5000/level/static/"}}
                     </div>
             </div>
             <table class="documentation">
@@ -151,7 +151,7 @@
             Converts JSON list into list display.
             <div class="preview">
                     <div class="table-container">
-                        {{gamily-list ajaxURL="http://127.0.0.1:800/list.json.php" variable="data.list"}}
+                        {{gamily-list ajaxURL="http://127.0.0.1:5000/level/user/test" variable="data.level"}}
                     </div>
             </div>
             <table class="documentation">

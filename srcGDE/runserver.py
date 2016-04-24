@@ -21,6 +21,10 @@ app.register_blueprint(leaderboard, url_prefix='/leaderboard')
 from avatar import avatar
 app.register_blueprint(avatar, url_prefix='/avatar')
 
+# Avatar registering
+from level import level
+app.register_blueprint(level, url_prefix='/level')
+
 # @app.route('/documentation')
 # def documentation():
 #     return auto.html()

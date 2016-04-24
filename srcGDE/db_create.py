@@ -14,6 +14,10 @@ from flask import Flask
 # from leaderboard.config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO
 # from leaderboard import db
 ############## LEADER BOARD ENDS ###############
+################## BADGES START ################
+from level.config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO
+from level import db
+################## BADGES ENDS #################
 
 import os.path
 db.create_all()
