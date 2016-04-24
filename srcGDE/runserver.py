@@ -1,6 +1,6 @@
 from flask import Flask
 import importlib
-from flask.ext.autodoc import Autodoc
+#from flask.ext.autodoc import Autodoc
 from flask.ext.cors import CORS
 
 app = Flask(__name__)
@@ -17,6 +17,9 @@ app.register_blueprint(badges, url_prefix='/badges')
 from leaderboard import leaderboard
 app.register_blueprint(leaderboard, url_prefix='/leaderboard')
 
+# Leaderboard registering
+from achievements import achievements
+app.register_blueprint(achievements, url_prefix='/achievements')
 # Avatar registering
 from avatar import avatar
 app.register_blueprint(avatar, url_prefix='/avatar')

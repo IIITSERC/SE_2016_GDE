@@ -14,10 +14,10 @@ from flask import Flask
 # from badges.config import SQLALCHEMY_MIGRATE_REPO
 ################## BADGES ENDS #################
 ############## LEADER BOARD STARTS #############
-from leaderboard import models
-from leaderboard import db
-from leaderboard.config import SQLALCHEMY_DATABASE_URI
-from leaderboard.config import SQLALCHEMY_MIGRATE_REPO
+from achievements import models
+from achievements import db
+from achievements.config import SQLALCHEMY_DATABASE_URI
+from achievements.config import SQLALCHEMY_MIGRATE_REPO
 ############## LEADER BOARD ENDS ###############
 v = api.db_version(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
 migration = SQLALCHEMY_MIGRATE_REPO + ('/versions/%03d_migration.py' % (v+1))

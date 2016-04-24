@@ -7,8 +7,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask import Flask
 
 ################## BADGES START ################
-# from badges.config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO
-# from badges import db
+from achievements.config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO
+from achievements import db
 ################## BADGES ENDS #################
 ############## LEADER BOARD STARTS #############
 # from leaderboard.config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO
